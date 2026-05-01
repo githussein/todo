@@ -9,13 +9,11 @@ app.use(express.json());
 const storage = {}
 let latestId = 1;
 
-// GET endpoint for todo list
 app.get('/api/todos', (req, res) => {
 
   res.json(Object.values(storage));
 });
 
-// POST endpoint for todo list
 app.post('/api/todos', (req, res) => {
   const newTodo = {
     title: req.body.title,
@@ -32,7 +30,6 @@ app.post('/api/todos', (req, res) => {
   });
 });
 
-// PUT endpoint for todo list
 app.put('/api/todos/:id', (req, res) => {
   storage[req.params.id] = req.body;
 
@@ -42,7 +39,6 @@ app.put('/api/todos/:id', (req, res) => {
   });
 });
 
-// DELETE endpoint for todo list
 app.delete('/api/todos/:id', (req, res) => {
   delete storage[req.params.id]
   res.json({
@@ -50,9 +46,6 @@ app.delete('/api/todos/:id', (req, res) => {
     todo: storage[req.params.id]
   });
 });
-
-// CORS is enabled globally above
-
 
 app.listen(3001, () => {
   console.log('Server started on port 3001');
